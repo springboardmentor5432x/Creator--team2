@@ -5,9 +5,7 @@ from app.database import Base, engine
 
 # Models
 from app.models.user import User
-from app.models.creator_profile import CreatorProfile
 from app.models.content import Content
-from app.models.analytics import Analytics
 from app.models.user_settings import UserSettings
 from app.models.team_member import TeamMember
 from app.models.audience import Audience
@@ -19,9 +17,7 @@ from app.models.revenue import Sponsorship, AdRevenue
 
 # Routers
 from app.routes.auth import router as auth_router
-from app.routes.creator_profile import router as creator_profile_router
 from app.routes.content import router as content_router
-from app.routes.analytics import router as analytics_router
 from app.routes.dashboard import router as dashboard_router
 from app.routes.settings import router as settings_router
 from app.routes.team import router as team_router
@@ -55,9 +51,7 @@ app.add_middleware(
 
 # Routers
 app.include_router(auth_router)
-app.include_router(creator_profile_router)
 app.include_router(content_router)
-app.include_router(analytics_router)
 app.include_router(dashboard_router)
 app.include_router(settings_router)
 app.include_router(team_router)

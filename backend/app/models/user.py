@@ -18,9 +18,4 @@ class User(Base):
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
-    creator_profile = relationship(
-        "CreatorProfile",
-        back_populates="user",
-        uselist=False,
-        cascade="all, delete-orphan"
-    )
+    contents = relationship("Content", back_populates="creator", cascade="all, delete-orphan")

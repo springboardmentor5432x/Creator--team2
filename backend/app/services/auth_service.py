@@ -111,3 +111,34 @@ def login_user(form_data, db):
         "access_token": access_token,
         "token_type": "bearer"
     }
+
+
+def login_user_json(user, db):
+
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
+
+    if not existing_user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    if not verify_password(
+        user.password,
+        existing_user.password_hash
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Incorrect password"
+        )
+
+    access_token = create_access_token(
+        data={"sub": existing_user.email}
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }

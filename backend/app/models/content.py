@@ -12,7 +12,7 @@ class Content(Base):
 
     creator_id = Column(
         Integer,
-        ForeignKey("creator_profile.id", ondelete="CASCADE"),
+        ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False
     )
 
@@ -33,4 +33,4 @@ class Content(Base):
 
     created_at = Column(DateTime, server_default=func.now())
 
-    creator = relationship("CreatorProfile", back_populates="contents")
+    creator = relationship("User", back_populates="contents")
